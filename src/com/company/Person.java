@@ -4,24 +4,27 @@ package com.company;
  * Created by Troy on 9/26/16.
  */
 public class Person implements Comparable {
-    int id;
+    int personId;
     String firstName;
     String lastName;
     String email;
-    String country;
+    String countryName;
     String ipAddress;
+    public Person() {
 
-    public Person(int id, String firstName, String lastName, String email, String country, String ipAddress) {
-        this.id = id;
+    }
+
+    public Person(int personId, String firstName, String lastName, String email, String countryName, String ipAddress) {
+        this.personId = personId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.country = country;
+        this.countryName = countryName;
         this.ipAddress = ipAddress;
     }
 
-    public int getId() {
-        return id;
+    public int getPersonId() {
+        return personId;
     }
 
     public String getFirstName() {
@@ -37,7 +40,7 @@ public class Person implements Comparable {
     }
 
     public String getCountry() {
-        return country;
+        return countryName;
     }
 
     public String getIpAddress() {
@@ -46,11 +49,7 @@ public class Person implements Comparable {
 
     @Override
     public String toString() {
-        return "Person{" +
-                firstName +
-                lastName +
-                "from" + country +
-                '}';
+        return "Person{" + firstName + " " +  lastName + " " + "from " + countryName + '}';
     }
 
     @Override
