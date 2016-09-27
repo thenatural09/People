@@ -1,14 +1,20 @@
 package com.company;
 
+import jodd.json.JsonSerializer;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         HashMap<String,ArrayList<Person>> personMap = new HashMap<>();
         ArrayList<Person> peopleList = new ArrayList<>();
         File f = new File("people.txt");
@@ -25,5 +31,26 @@ public class Main {
             Person p = new Person(Integer.valueOf(id),firstName,lastName,email,country,ipAddress);
             peopleList.add(p);
         }
+
+        for (Person person : peopleList) {
+            Collections.sort(peopleList);
+            String country = person.country;
+            if(!personMap.containsKey(country)) {
+                personMap.put(country,new ArrayList<>());
+            } else {
+                personMap.get(country).add(person);
+            }
+        }
+    }
+
+    public static void writeToJson(ArrayList<Person> peopleList,String fileName) throws IOException {
+        File f1 = new File(fileName);
+        JsonSerializer serializer = new JsonSerializer();
+        PersonWrapper pw = new PersonWrapper(peopleList);
+        pw.people = peopleList;
+        String json = serializer.deep(true).serialize(pw);
+        FileWriter fw = new FileWriter(f1);
+        fw.write(json);
+        fw.close();
     }
 }

@@ -3,7 +3,7 @@ package com.company;
 /**
  * Created by Troy on 9/26/16.
  */
-public class Person {
+public class Person implements Comparable {
     int id;
     String firstName;
     String lastName;
@@ -43,4 +43,21 @@ public class Person {
     public String getIpAddress() {
         return ipAddress;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                firstName +
+                lastName +
+                "from" + country +
+                '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Person p = (Person) o;
+        return this.lastName.compareTo(p.lastName);
+    }
 }
+
+
