@@ -49,7 +49,7 @@ public class Person implements Comparable {
 
     @Override
     public String toString() {
-        return "Person{" + firstName + " " +  lastName + " " + "from " + countryName + '}';
+        return "{" + firstName + " " +  lastName + " " + "from " + countryName + '}';
     }
 
     @Override

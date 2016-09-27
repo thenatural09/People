@@ -24,7 +24,7 @@ public class Main {
     public static void writeToJson(HashMap<String,ArrayList<Person>> personMap,String fileName) throws IOException {
         File f1 = new File(fileName);
         JsonSerializer serializer = new JsonSerializer();
-        String json = serializer.deep(true).serialize(personMap);
+        String json = serializer.deep(true).serialize(personMap.toString());
         FileWriter fw = new FileWriter(f1);
         fw.write(json);
         fw.close();
