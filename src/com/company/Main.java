@@ -14,12 +14,11 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        ArrayList<Person> peopleList = readTxtFile();
+        ArrayList<Person> peopleList = readTxtFile("people.txt");
         HashMap<String,ArrayList<Person>> personMap = sortPeoplList(peopleList);
         writeToJson(personMap, "people.json");
         System.out.println(personMap.toString());
     }
-
 
     public static void writeToJson(HashMap<String,ArrayList<Person>> personMap,String fileName) throws IOException {
         File f1 = new File(fileName);
@@ -44,9 +43,9 @@ public class Main {
         return personMap;
     }
 
-    public static ArrayList<Person> readTxtFile() throws FileNotFoundException {
+    public static ArrayList<Person> readTxtFile(String fileName) throws FileNotFoundException {
         ArrayList<Person> peopleList = new ArrayList<>();
-        File f = new File("people.txt");
+        File f = new File(fileName);
         Scanner fileScanner = new Scanner(f);
         while(fileScanner.hasNext()) {
             String line = fileScanner.nextLine();

@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.junit.Assert.*;
 
@@ -14,10 +15,14 @@ import static org.junit.Assert.*;
 public class MainTest {
     @Test
     public void testReadTxtFile() throws FileNotFoundException {
-        File f = new File("people.txt");
-        Person person = new Person();
-        person.countryName = "France";
-        ArrayList<Person> peopleList = Main.readTxtFile();
-        assertTrue(peopleList.contains(person));
+        ArrayList<Person> peopleList = Main.readTxtFile("peopletest.txt");
+        assertTrue(!peopleList.isEmpty());
+    }
+
+    @Test
+    public void testSortPeople() throws FileNotFoundException {
+        ArrayList<Person> peopleList = Main.readTxtFile("peopletest.txt");
+        HashMap<String,ArrayList<Person>> personMap = Main.sortPeoplList(peopleList);
+        assertTrue(!personMap.isEmpty());
     }
 }
